@@ -1,0 +1,36 @@
+import {
+  binary-builder.scene,
+  this.entity {_to-binary-builder-N, builder},
+}
+
+define append-int64-UTF8(b: &builder, x: int64): unit {
+  binary-builder.scene.append-int64-UTF8(_to-binary-builder-N(b), x)
+}
+
+define append-int32-UTF8(b: &builder, x: int32): unit {
+  binary-builder.scene.append-int32-UTF8(_to-binary-builder-N(b), x)
+}
+
+define append-int16-UTF8(b: &builder, x: int16): unit {
+  binary-builder.scene.append-int16-UTF8(_to-binary-builder-N(b), x)
+}
+
+define append-int8-UTF8(b: &builder, x: int8): unit {
+  binary-builder.scene.append-int8-UTF8(_to-binary-builder-N(b), x)
+}
+
+define append-float64-UTF8(b: &builder, x: float64): unit {
+  binary-builder.scene.append-float64-UTF8(_to-binary-builder-N(b), x)
+}
+
+define append-float32-UTF8(b: &builder, x: float32): unit {
+  binary-builder.scene.append-float32-UTF8(_to-binary-builder-N(b), x)
+}
+
+define append-float16-UTF8(b: &builder, x: float16): unit {
+  binary-builder.scene.append-float16-UTF8(_to-binary-builder-N(b), x)
+}
+
+define append-text(b: &builder, x: &text): unit {
+  binary-builder.scene.append-text(_to-binary-builder-N(b), x)
+}

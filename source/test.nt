@@ -1,0 +1,54 @@
+import {
+  core.float.show {show-float},
+  core.int.show {show-int},
+  core.list {for-N},
+  core.text {join},
+  noa.gen.floats {floats},
+  noa.gen.ints {ints},
+  noa.gen.lists {lists},
+  noa.gen.texts {texts},
+  noa.suite {noa},
+  this.entity {create, get},
+  this.scene {append-float64-UTF8, append-int64-UTF8, append-text},
+}
+
+define main(): unit {
+  noa::check(
+    "∀ (xs: list(text)). join(xs) == {let b = create(N) in append-text(b, x1); ...; append-text(b, xn); get(b)}",
+    lists(texts),
+    function (xs: list(text)) {
+      pin xs = xs in
+      pin t1 = join(*xs) in
+      let buf = create(100) in
+      let _ on buf =
+        for-N(xs, function (x) {
+          append-text(buf, x)
+        })
+      in
+      pin t2 = get(buf) in
+      eq-text(t1, t2)
+    },
+  );
+  noa::check(
+    "∀ (x: int). show-int(x) == {let b = create(N) in append-int64-UTF8(b, x); get(b)}",
+    ints,
+    function (x: int) {
+      pin t1 = show-int(x) in
+      let buf = create(100) in
+      let _ on buf = append-int64-UTF8(buf, x) in
+      pin t2 = get(buf) in
+      eq-text(t1, t2)
+    },
+  );
+  noa::check(
+    "∀ (x: float64). show-float64(x) == {let b = create(N) in append-float64-UTF8(b, x); get(b)}",
+    floats,
+    function (x: float) {
+      pin t1 = show-float(x) in
+      let buf = create(100) in
+      let _ on buf = append-float64-UTF8(buf, x) in
+      pin t2 = get(buf) in
+      eq-text(t1, t2)
+    },
+  )
+}
