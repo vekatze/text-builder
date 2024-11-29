@@ -20,8 +20,8 @@ data builder {..}
 // insufficient space to append new data.
 define create(size: int): builder
 
-// Extracts the accumulated binary data from the builder.
-define get(b: builder): binary
+// Extracts the accumulated text from the builder.
+define get(b: builder): text
 ```
 
 ### Builders
@@ -30,7 +30,7 @@ define get(b: builder): binary
 // Appends the text `x` to the builder `b`.
 define append-text(b: &builder, x: &text): unit
 
-// Appends int64 to the given builder as a UTF-8 text.
+// Appends int64 to the given builder as UTF-8 text.
 define append-int64-UTF8(b: &builder, x: int64): unit
 
 // An int32 variant of `append-int64-UTF8`.
@@ -39,10 +39,10 @@ define append-int32-UTF8(b: &builder, x: int32): unit
 // An int16 variant of `append-int64-UTF8`.
 define append-int16-UTF8(b: &builder, x: int16): unit
 
-// Appends int8 to the given builder as a UTF-8 text.
+// Appends int8 to the given builder as UTF-8 text.
 define append-int8-UTF8(b: &builder, x: int8): unit
 
-// Appends float64 to the given builder as a UTF-8 text.
+// Appends float64 to the given builder as UTF-8 text.
 define append-float64-UTF8(b: &builder, x: float64): unit
 
 // An float32 variant of `append-float64-UTF8`.
