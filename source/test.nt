@@ -7,13 +7,14 @@ import {
   noa.gen.ints {ints},
   noa.gen.lists {lists},
   noa.gen.texts {texts},
-  noa.suite {noa},
+  noa.suite {Trope, noa},
   this.entity {create, get},
   this.scene {append-float64-UTF8, append-int64-UTF8, append-text},
 }
 
 define main(): unit {
-  noa::check(
+  let Trope of {check = !check} = noa in
+  !check(
     "∀ (xs: list(text)). join(xs) == {let b = create(N) in append-text(b, x1); ...; append-text(b, xn); get(b)}",
     lists(texts),
     function (xs: list(text)) {
@@ -29,7 +30,7 @@ define main(): unit {
       eq-text(t1, t2)
     },
   );
-  noa::check(
+  !check(
     "∀ (x: int). show-int(x) == {let b = create(N) in append-int64-UTF8(b, x); get(b)}",
     ints,
     function (x: int) {
@@ -40,7 +41,7 @@ define main(): unit {
       eq-text(t1, t2)
     },
   );
-  noa::check(
+  !check(
     "∀ (x: float64). show-float64(x) == {let b = create(N) in append-float64-UTF8(b, x); get(b)}",
     floats,
     function (x: float) {
