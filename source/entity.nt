@@ -1,26 +1,28 @@
 import {
-  binary-builder.entity,
+  binary-builder.move.extract,
+  binary-builder.move.make-builder,
+  binary-builder.rule.builder,
   core.text {_Text},
 }
 
 data builder {
-| _Builder(binary-builder.entity.builder)
+| _Builder(binary-builder.rule.builder.builder)
 }
 
-inline _to-binary-builder(b: builder): binary-builder.entity.builder {
+inline _to-binary-builder(b: builder): binary-builder.rule.builder.builder {
   let _Builder(b) = b in
   b
 }
 
-inline _to-binary-builder-N(b: &builder): &binary-builder.entity.builder {
+inline _to-binary-builder-N(b: &builder): &binary-builder.rule.builder.builder {
   tie _Builder(b) = b in
   b
 }
 
-define create(size: int): builder {
-  _Builder(binary-builder.entity.create(size))
+define make-builder(size: int): builder {
+  _Builder(binary-builder.move.make-builder.make-builder(size))
 }
 
-define get(b: builder): text {
-  _Text(binary-builder.entity.get(_to-binary-builder(b)))
+define extract(b: builder): text {
+  _Text(binary-builder.move.extract.extract(_to-binary-builder(b)))
 }
