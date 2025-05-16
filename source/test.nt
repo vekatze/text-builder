@@ -8,8 +8,9 @@ import {
   noa.gen.lists {lists},
   noa.gen.texts {texts},
   noa.suite {Trope, noa},
-  this.entity {extract, make-builder},
-  this.scene {append-float64-UTF8, append-int64-UTF8, append-text},
+  this.move.append {append-float64-UTF8, append-int64-UTF8, append-text},
+  this.move.extract {extract},
+  this.move.make-builder {make-builder},
 }
 
 define main(): unit {
@@ -52,4 +53,8 @@ define main(): unit {
       eq-text(t1, t2)
     },
   )
+}
+
+define zen(): unit {
+  main()
 }

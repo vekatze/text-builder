@@ -1,0 +1,8 @@
+import {
+  binary-builder.move.make-builder,
+  this.rule.builder {_Builder, builder},
+}
+
+define make-builder(size: int): builder {
+  _Builder(binary-builder.move.make-builder.make-builder(size))
+}

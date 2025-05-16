@@ -1,6 +1,6 @@
 import {
   binary-builder.move.append,
-  this.entity {_to-binary-builder-N, builder},
+  this.rule.builder {_to-binary-builder-N, builder},
 }
 
 define append-int64-UTF8(b: &builder, x: int64): unit {

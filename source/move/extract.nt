@@ -1,0 +1,9 @@
+import {
+  binary-builder.move.extract,
+  core.text {_Text},
+  this.rule.builder {_to-binary-builder, builder},
+}
+
+define extract(b: builder): text {
+  _Text(binary-builder.move.extract.extract(_to-binary-builder(b)))
+}

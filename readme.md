@@ -18,10 +18,10 @@ data builder {..}
 // Allocates memory of size `size` and returns it as a builder.
 // The builder's size automatically doubles when there is
 // insufficient space to append new data.
-define create(size: int): builder
+define make-builder(size: int): builder
 
 // Extracts the accumulated text from the builder.
-define get(b: builder): text
+define extract(b: builder): text
 ```
 
 ### Builders
@@ -56,13 +56,13 @@ define append-float16-UTF8(b: &builder, x: float16): unit
 
 ```neut
 define zen(): unit {
-  let b = create(4) in
+  let b = make-builder(4) in
   let _ on b =
     append-text(b, "hello");
     append-int64-UTF8(b, 123);
     append-text(b, "world")
   in
-  let result = get(b) in
+  let result = extract(b) in
   printf("{}\n", [result])
 }
 
