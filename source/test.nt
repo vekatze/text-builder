@@ -3,21 +3,23 @@ import {
   core.int.show {show-int},
   core.list {for-N},
   core.text {join},
-  noa.gen.floats {floats},
-  noa.gen.ints {ints},
-  noa.gen.lists {lists},
-  noa.gen.texts {texts},
-  noa.suite {Trope, noa},
+  noa.move.check {check},
+  noa.move.gen.float {float-gen},
+  noa.move.gen.int {int-gen},
+  noa.move.gen.list {list-gen},
+  noa.move.gen.text {text-gen},
+  noa.move.make-noa-kit {make-default-noa-kit},
   this.move.append {append-float64-UTF8, append-int64-UTF8, append-text},
   this.move.extract {extract},
   this.move.make-builder {make-builder},
 }
 
 define main(): unit {
-  let Trope of {check = !check} = noa in
-  !check(
+  pin k = make-default-noa-kit() in
+  check(
+    k,
     "∀ (xs: list(text)). join(xs) == {let b = create(N) in append-text(b, x1); ...; append-text(b, xn); get(b)}",
-    lists(texts),
+    list-gen(text-gen),
     function (xs: list(text)) {
       pin xs = xs in
       pin t1 = join(*xs) in
@@ -31,9 +33,10 @@ define main(): unit {
       eq-text(t1, t2)
     },
   );
-  !check(
+  check(
+    k,
     "∀ (x: int). show-int(x) == {let b = create(N) in append-int64-UTF8(b, x); get(b)}",
-    ints,
+    int-gen,
     function (x: int) {
       pin t1 = show-int(x) in
       let buf = make-builder(100) in
@@ -42,9 +45,10 @@ define main(): unit {
       eq-text(t1, t2)
     },
   );
-  !check(
+  check(
+    k,
     "∀ (x: float64). show-float64(x) == {let b = create(N) in append-float64-UTF8(b, x); get(b)}",
-    floats,
+    float-gen,
     function (x: float) {
       pin t1 = show-float(x) in
       let buf = make-builder(100) in
