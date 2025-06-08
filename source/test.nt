@@ -15,21 +15,20 @@ import {
 }
 
 define main(): unit {
-  pin k = make-default-noa-kit() in
+  pin k = make-default-noa-kit();
   check(
     k,
     "∀ (xs: list(text)). join(xs) == {let b = create(N) in append-text(b, x1); ...; append-text(b, xn); get(b)}",
     list-gen(text-gen),
     function (xs: list(text)) {
-      pin xs = xs in
-      pin t1 = join(*xs) in
-      let buf = make-builder(100) in
+      pin xs = xs;
+      pin t1 = join(*xs);
+      let buf = make-builder(100);
       let _ on buf =
         for-N(xs, function (x) {
           append-text(buf, x)
-        })
-      in
-      pin t2 = extract(buf) in
+        });
+      pin t2 = extract(buf);
       eq-text(t1, t2)
     },
   );
@@ -38,10 +37,10 @@ define main(): unit {
     "∀ (x: int). show-int(x) == {let b = create(N) in append-int64-UTF8(b, x); get(b)}",
     int-gen,
     function (x: int) {
-      pin t1 = show-int(x) in
-      let buf = make-builder(100) in
-      let _ on buf = append-int64-UTF8(buf, x) in
-      pin t2 = extract(buf) in
+      pin t1 = show-int(x);
+      let buf = make-builder(100);
+      let _ on buf = append-int64-UTF8(buf, x);
+      pin t2 = extract(buf);
       eq-text(t1, t2)
     },
   );
@@ -50,10 +49,10 @@ define main(): unit {
     "∀ (x: float64). show-float64(x) == {let b = create(N) in append-float64-UTF8(b, x); get(b)}",
     float-gen,
     function (x: float) {
-      pin t1 = show-float(x) in
-      let buf = make-builder(100) in
-      let _ on buf = append-float64-UTF8(buf, x) in
-      pin t2 = extract(buf) in
+      pin t1 = show-float(x);
+      let buf = make-builder(100);
+      let _ on buf = append-float64-UTF8(buf, x);
+      pin t2 = extract(buf);
       eq-text(t1, t2)
     },
   )

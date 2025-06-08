@@ -7,11 +7,11 @@ data builder {
 }
 
 inline _to-binary-builder(b: builder): binary-builder.rule.builder.builder {
-  let _Builder(b) = b in
+  let _Builder(b) = b;
   b
 }
 
 inline _to-binary-builder-N(b: &builder): &binary-builder.rule.builder.builder {
-  tie _Builder(b) = b in
+  tie _Builder(b) = b;
   b
 }
