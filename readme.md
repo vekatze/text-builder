@@ -62,8 +62,8 @@ define zen(): unit {
     append-int64-UTF8(b, 123);
     append-text(b, "world")
   };
-  let result = extract(b);
-  printf("{}\n", [result])
+  pin result = extract(b);
+  print-line(result);
 }
 
 // => hello123world
