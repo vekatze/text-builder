@@ -5,7 +5,7 @@
 ## Installation
 
 ```sh
-neut get text-builder https://github.com/vekatze/text-builder/raw/main/archive/0-1-14.tar.zst
+neut get text-builder https://github.com/vekatze/text-builder/raw/main/archive/0-1-15.tar.zst
 ```
 
 ## Types
